@@ -1,0 +1,33 @@
+{% extends 'admin/master.html' %}
+{% block title %}History{% endblock %}
+{% block head %}
+
+<main class="main-wrapper">
+    {% endblock %}
+    {% block body %}
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Pair</th>
+                <th>Buy Price</th>
+                <th>Target_1</th>
+                <th>Target_2</th>
+                <th>Stop Lose</th>
+            </tr>
+            {% for coin in coins %}
+                <tr>
+                    <th>{{ coin['id'] }}</th>
+                    <td>{{ coin['date'] }}</td>
+                    <td>{{ coin['pair'] }}</td>
+                    <td>{{ coin['buy'] }}</td>
+                    <td>{{ coin['target_1'] }}</td>
+                    <td>{{ coin['target_2'] }}</td>
+                    <td>{{ coin['sl'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %}

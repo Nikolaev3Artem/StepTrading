@@ -1,0 +1,33 @@
+{% extends 'admin/master.html' %}
+{% block title %}History{% endblock %}
+{% block head %}
+
+<main class="main-wrapper">
+    {% endblock %}
+    {% block body %}
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <th>{{ user['id'] }}</th>
+                    <td>{{ user['date'] }}</td>
+                    <td>{{ user['username'] }}</td>
+                    <td>{{ user['email'] }}</td>
+                    <td>{{ user['balance'] }}</td>
+                    <td>{{ user['name'] }}</td>
+                    <td>{{ user['surname'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %}

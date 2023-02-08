@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static',filename='images/favicon.svg') }}"
+      type="image/x-icon"
+    />
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fullcalendar.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/materialdesignicons.min.css')}}" />
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.svg')}}" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/lineicons.css')}}" />
+    <title>Sign Up</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper-index">
+      <!-- ========== signin-section start ========== -->
+      <section class="signin-section">
+        <div class="container-fluid-index">
+          <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title mb-30">
+                  
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+          <div class="row g-0 auth-row">
+            <div class="col-lg-6">
+              <div class="auth-cover-wrapper bg-primary-100">
+                <div class="auth-cover">
+                  <div class="title text-center">
+                    <h2>Sign up</h2>
+                    <h1 class="text-primary mb-10">Get Started</h1>
+                    <p class="text-medium">
+                      Start creating the best possible user experience
+                      <br class="d-sm-block" />
+                      for you customers
+                    </p>
+                  </div>
+                  <div class="cover-image">
+                    <img src="{{ url_for('static',filename='images/auth/signin-image.svg') }}" alt="" />
+                  </div>
+                  <div class="shape-image">
+                    <img src="{{ url_for('static',filename='images/auth/shape.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+            <div class="col-lg-6">
+              <div class="signup-wrapper">
+                <div class="form-wrapper">
+                  {% for msg in get_flashed_messages() %}
+                  <div class="flash">{{ msg }}</div>
+                  {% endfor %}
+                  <form action="/signup" method="post" class="form-contact">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Username</label>
+                          <input name='username' value='' type="text" placeholder="Username" required />
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Email</label>
+                          <input name='email' value='' type="email" placeholder="Email" requied />
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Password</label>
+                          <input name='password' value='' type="password" placeholder="Password" required />
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div class="input-style-1">
+                          <label>Repeat Password</label>
+                          <input name='password2' value='' type="password" placeholder="Repeat Password" required />
+                        </div>
+                      </div>
+                      <!-- end col -->
+                      <div class="form_container">
+                        <form action="#" id="my_captcha_form">
+                          <div style = 'margin-bottom: 10px;'class="g-recaptcha" data-sitekey="6LfrFKQUAAAAAMzFobDZ7ZWy982lDxeps8cd1I2i"></div>
+                        </form>
+                      </div>
+                      <!-- end col -->
+                      <div class="col-12">
+                        <div
+                          class="
+                            button-group
+                            d-flex
+                            justify-content-center
+                            flex-wrap
+                          "
+                        >
+                          <button type="submit" class=" main-btn primary-btn btn-hover w-100 text-center">Sign Up</button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end row -->
+                  </form>
+                  <div class="singup-option pt-40">
+                    <p class="text-sm text-medium text-dark text-center">
+                      Already have an account? <a href="{{ url_for('login') }}">Sign In</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+        </div>
+      </section>
+      <!-- ========== signin-section end ========== -->
+
+      <!-- ========== footer start =========== -->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6 order-last order-md-first">
+              <div class="copyright text-center text-md-start">
+                <a href="{{ url_for('index') }}" style="text-transform:capitalize;text-decoration: none;color: black;padding-left: 70%;">
+                  Designed 
+                </a>
+              </div>
+            </div>
+            <!-- end col-->
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end container -->
+      </footer>
+      <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/dynamic-pie-chart.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/moment.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/fullcalendar.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jvectormap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/world-merc.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/polyfill.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+  </body>
+</html>
