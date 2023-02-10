@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static',filename='images/favicon.svg') }}"
+      type="image/x-icon"
+    />
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fullcalendar.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/materialdesignicons.min.css')}}" />
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.svg')}}" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/lineicons.css')}}" />
+    <title>Sign Up</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+<body>
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-4">
+          <div class="card-style mb-30">
+              {% for msg in get_flashed_messages() %}
+              <div class="flash" style="color:red;">{{ msg }}</div>
+              {% endfor %}
+              <form action="/recover-password" method="post">
+                <div class="input-style-1">
+                    <label>New password</label>
+                    <input name='password1' type="text" placeholder="New password" />
+                </div>
+                <!-- end input -->
+                <div class="input-style-2">
+                    <label>Repeat password</label>
+                    <input name='password2' type="text" placeholder="Repeat password" />
+                </div>
+                <!-- end input -->
+                <div class="input-style-3">
+                  <button type="submit" class=" main-btn primary-btn btn-hover w-100 text-center">Save password</button>
+                </div>
+                <!-- end input -->
+              </form>
+          </div>
+        </div>
+      </div>
+    
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/dynamic-pie-chart.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/moment.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/fullcalendar.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jvectormap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/world-merc.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/polyfill.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+  </body>
+</html>

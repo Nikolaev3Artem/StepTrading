@@ -5,11 +5,11 @@ from flask_login import LoginManager , login_required
 from flask_session import Session
 from tempfile import mkdtemp
 import flask_admin as admin
-from modules import FDataBase, UserLogin
+from models import FDataBase, UserLogin
 from handlers import Hindex, \
     Hhome, Hhistory, Hlogin, Hsettings, \
     Hsignup, Hforgot_pass, Hcoin_db, Huser_db,\
-    Hadmin,Hinvoice, Hstrategy, Hprofile
+    Hadmin,Hinvoice, Hstrategy, Hprofile, Hrecover_pass
 import os
 from dotenv import load_dotenv, find_dotenv
 
@@ -100,6 +100,10 @@ def signup():
 @app.route('/forgot-password', methods = ['GET','POST'])
 def forgot_pass():
     return Hforgot_pass.forgot_pass(dbase)
+
+@app.route('/recover-password',methods = ['GET','POST'])
+def recover_pass():
+    return Hrecover_pass.recover_pass(dbase)
 
 @app.route('/coin_db', methods = ['GET','POST'])
 @login_required
