@@ -1,17 +1,21 @@
 import sqlite3
 import os
-from flask import Flask, g, session, render_template
-from flask_login import LoginManager , login_required
+from flask import Flask, g, session, render_template, redirect, request, url_for
+from flask_login import LoginManager , login_required, login_user
 from flask_session import Session
 from tempfile import mkdtemp
 import flask_admin as admin
-from models import FDataBase, UserLogin
+from models.Users import UserLogin
+from models.Coins import Coins
 from handlers import Hindex, \
     Hhome, Hhistory, Hlogin, Hsettings, \
     Hsignup, Hforgot_pass, Hcoin_db, Huser_db,\
-    Hadmin,Hinvoice, Hstrategy, Hprofile, Hrecover_pass
+    Hadmin,Hinvoice, Hstrategy, Hprofile, Hrecover_pass, \
+    Hloginbygoogle, Hgooglelogincallback
 import os
 from dotenv import load_dotenv, find_dotenv
+import requests
+import json
 
 load_dotenv(find_dotenv())
 app = Flask(__name__)
@@ -24,6 +28,7 @@ app.config["SESSION_PERMANENT"] = os.getenv('SESSION_PERMANENT')
 app.config["SESSION_TYPE"] = os.getenv('SESSION_TYPE')
 app.config['FLASK_ADMIN_SWATCH'] = os.getenv('FLASK_ADMIN_SWATCH')
 app.config['RECAPTCHA_OPTIONS'] = os.getenv('RECAPTCHA_OPTIONS')
+app.config['OAUTHLIB_INSECURE_TRANSPORT'] = os.getenv('OAUTHLIB_INSECURE_TRANSPORT')
 DATABASE = os.getenv('DATABASE')
 DEBUG = os.getenv('DEBUG')
 
@@ -39,7 +44,6 @@ def load_user(user_id):
 
 #DataBase connect
 def connect_db():
-    #conn = sqlite3.connect("/home/syberianwolf/ST2023.db")
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
@@ -61,7 +65,7 @@ dbase = None
 def before_request():
     global dbase
     db = get_db()
-    dbase = FDataBase(db)
+    dbase = Coins(db)
 
 login_manager.login_view = '/login'
 
@@ -73,7 +77,6 @@ def index():
 
 
 @app.route('/home',methods=['GET','POST'])
-@login_required
 def home():
     return Hhome.home(dbase, session)
 
@@ -82,16 +85,23 @@ def home():
 @login_required
 def history():
     return Hhistory.history(dbase)
-
+    
 @app.route('/login',methods = ['GET','POST'])
 def login():
-    return Hlogin.login(dbase, session)
+    return Hlogin.login(dbase,session)
 
 @app.route('/settings',methods = ['GET', 'POST'])
 @login_required
 def settings():
     return Hsettings.settings()
 
+@app.route('/loginbygoogle',methods = ['GET', 'POST'])
+def loginbygoogle():
+    return Hloginbygoogle.loginbygoogle()
+
+@app.route('/loginbygoogle/callback',methods = ['GET', 'POST'])
+def callback():
+    return Hgooglelogincallback.callback(dbase)
 
 @app.route('/signup', methods = ['GET','POST'])
 def signup():
@@ -157,5 +167,5 @@ def pageNotFound(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
     connect_db()
+    app.run(debug=True)

@@ -1,7 +1,12 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from werkzeug.security import check_password_hash
-from models import UserLogin
+from models.Users import UserLogin
 from flask_login import login_user
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
 
 def login(dbase,session):
     session.clear()

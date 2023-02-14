@@ -148,13 +148,15 @@
                         Facebook
                       </button>
                       <button class="main-btn danger-btn-outline m-2">
-                        <i class="lni lni-google mr-10"></i>
-                        Google
+                        <a href="{{ url_for('loginbygoogle') }}">
+                          <i class="lni lni-google mr-10"></i>
+                          Google
+                        </a>
                       </button>
                     </div>
                     <p class="text-sm text-medium text-dark text-center">
                       Don’t have any account yet?
-                      <a href="signup.html">Create an account</a>
+                      <a href="signup">Create an account</a>
                     </p>
                   </div>
                   <div class="singin-option pt-40">

@@ -1,5 +1,5 @@
 from flask import request, render_template, flash, redirect, url_for
-from models import FDataBase
+from models.Coins import Coins
 
 def recover_pass(dbase,user_id):
     if request.method == 'POST':
@@ -10,7 +10,7 @@ def recover_pass(dbase,user_id):
         elif len(password1) <= 4:
             flash("Password must be longer than 4")
         else:
-            if FDataBase.swap_pass(password1,user_id):
+            if Coins.swap_pass(password1,user_id):
                 return redirect(url_for('login'))
         
 

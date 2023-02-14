@@ -11,7 +11,7 @@ def signup(dbase):
         elif len(request.form['username']) < 4:
             flash('Username must be more than 4 characters')
         elif len(request.form['email']) < 4:
-            flash('Email must be more than 4 characters')
+            flash('Email is incorrect')
         elif len(request.form['password']) < 4:
             flash('Password must be more than 4 characters')
         elif request.form['password'] != request.form['password2']:
