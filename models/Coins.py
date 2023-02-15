@@ -32,7 +32,7 @@ class Coins:
             flash("Ошибка смены пароля, свяжитесь с админом сайта")
             return false
 
-    def getUser(self,user_id: int) -> sqlite3.Row:
+    def getUser(self,user_id: int):
         try:
             query = f"SELECT * FROM users WHERE id = {user_id} LIMIT 1"
             self.__cur.execute(query)
@@ -42,10 +42,19 @@ class Coins:
                 return False
             return res
         except sqlite3.Error as e:
-            print("Ошибка получения данных из БД "+str(e))
+            print("1Ошибка получения данных из БД "+str(e))
         
         return False
     
+    def getUserId(self,email: str):
+        query = f"SELECT id FROM users WHERE email = '{email}' LIMIT 1"
+        self.__cur.execute(query)
+        res = self.__cur.fetchone()
+        if not res:
+            print("User not found")
+            return False
+        return res[0]
+
     def getUserByEmail(self,email: str) -> sqlite3.Row:
         try:
             query = f"SELECT * FROM users WHERE email = '{email}' LIMIT 1"
@@ -57,7 +66,7 @@ class Coins:
             
             return res
         except sqlite3.Error as e:
-            print("Ошибка получения данных из БД "+str(e))
+            print("2Ошибка получения данных из БД "+str(e))
         return False
     
     def getCoin(self) -> sqlite3.Row:

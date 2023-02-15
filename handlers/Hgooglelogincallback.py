@@ -53,7 +53,7 @@ def callback(dbase):
         dbase.addUser(username=users_name, email=users_email,isAdmin=False, hpsw=123,balance=0)
 
     # Begin user session by logging the user in
-    login_user(UserLogin().fromDB(2,dbase))
+    login_user(UserLogin().fromDB(dbase.getUserId(users_email),dbase))
 
     # Send user back to homepage
     return redirect(url_for("home"))
