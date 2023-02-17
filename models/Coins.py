@@ -69,6 +69,15 @@ class Coins:
             print("2Ошибка получения данных из БД "+str(e))
         return False
     
+    def getUserCount(self):
+        query = f"SELECT * FROM users"
+        self.__cur.execute(query)
+        res = self.__cur.fetchone()
+        if not res:
+            flash("Пользователь не найден")
+            return False
+        return res
+
     def getCoin(self) -> sqlite3.Row:
         query = """SELECT * from BUSD"""
         self.__cur.execute(query)

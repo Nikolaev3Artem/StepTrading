@@ -45,12 +45,12 @@ def callback(dbase):
     else:
         print("User email not available or not verified by Google.")
     user = dbase.addUser(
-        username=users_name, email=users_email,isAdmin=False,hpsw=123,balance=0
+        username=users_name, email=users_email,isAdmin=False,hpsw='None',balance=0
     )
 
     # Doesn't exist? Add it to the database.
     if not dbase.getUserByEmail(str(users_email)):
-        dbase.addUser(username=users_name, email=users_email,isAdmin=False, hpsw=123,balance=0)
+        dbase.addUser(username=users_name, email=users_email,isAdmin=False, hpsw='None',balance=0)
 
     # Begin user session by logging the user in
     login_user(UserLogin().fromDB(dbase.getUserId(users_email),dbase))

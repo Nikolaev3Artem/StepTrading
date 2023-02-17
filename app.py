@@ -40,7 +40,9 @@ user_id = ""
 @login_manager.user_loader
 def load_user(user_id):
     user_id = user_id
-    return UserLogin().fromDB(user_id,dbase)
+    user = UserLogin().fromDB(user_id,dbase)
+
+    return user
 
 #DataBase connect
 def connect_db():
@@ -167,5 +169,4 @@ def pageNotFound(error):
 
 
 if __name__ == '__main__':
-    connect_db()
     app.run(debug=True)
