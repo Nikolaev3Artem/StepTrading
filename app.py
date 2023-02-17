@@ -40,9 +40,7 @@ user_id = ""
 @login_manager.user_loader
 def load_user(user_id):
     user_id = user_id
-    user = UserLogin().fromDB(user_id,dbase)
-
-    return user
+    return UserLogin().fromDB(user_id,dbase)
 
 #DataBase connect
 def connect_db():
